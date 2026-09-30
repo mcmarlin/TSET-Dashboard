@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TSET-AHIF Project Plan Progress Dashboard</title>
+<meta name="description" content="Milestone progress for the TSET-AHIF project plan, by year and category.">
+<style>
+  :root{
+    --bg:#eef2f7; --card:#ffffff; --ink:#1b2a3a; --ink-2:#4a5b6d; --muted:#7a8898;
+    --line:#dde4ec; --line-2:#eef2f6;
+    --accent:#1f4e79; --accent-2:#2f6fa8;
+    --st-ns:#a3adb8; --st-ip:#f2b705; --st-c:#2e9e5b;
+    --st-ns-bg:#eef0f3; --st-ip-bg:#fdf3d4; --st-c-bg:#dff2e6;
+    --cat-con:#c0632b; --cat-con-bg:#fbe9dd;
+    --cat-adm:#5a55a6; --cat-adm-bg:#e8e7f6;
+    --late:#b3261e; --late-bg:#fbe4e2;
+    --radius:14px; --shadow:0 1px 2px rgba(20,40,70,.06),0 4px 14px rgba(20,40,70,.06);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.45}
+  .wrap{max-width:1240px;margin:0 auto;padding:20px 16px 48px}
+
+  /* ---------- header ---------- */
+  .brand{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 22px;display:flex;justify-content:center}
+  .brand img{display:block;width:100%;max-width:1000px;height:auto}
+  .titlebar{margin:20px 2px 16px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 20px}
+  h1{margin:0;font-size:26px;letter-spacing:-.2px;color:var(--accent)}
+  .sub{margin:4px 0 0;color:var(--ink-2)}
+  .stamp{color:var(--muted);font-size:12.5px;text-align:right}
+
+  /* ---------- KPI tiles ---------- */
+  .kpis{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:12px;margin-bottom:16px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px;position:relative;overflow:hidden}
+  .kpi .lab{font-size:12px;color:var(--ink-2);text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:6px}
+  .kpi .val{font-size:30px;font-weight:bold;margin-top:4px}
+  .kpi .note{font-size:12px;color:var(--muted);margin-top:2px}
+  .kpi.hero{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border:none}
+  .kpi.hero .lab,.kpi.hero .note{color:rgba(255,255,255,.85)}
+  .kpi.hero .val{font-size:36px}
+  .hero-bar{display:flex;gap:2px;height:8px;margin-top:10px;border-radius:4px;overflow:hidden;background:rgba(255,255,255,.2)}
+  .hero-bar span{display:block;height:100%}
+  .dot{width:10px;height:10px;border-radius:3px;display:inline-block;flex:none}
+
+  /* ---------- cards ---------- */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:16px}
+  .card-h{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;margin-bottom:12px}
+  .card h2{margin:0;font-size:17px;color:var(--ink)}
+  .card .desc{margin:2px 0 0;color:var(--ink-2);font-size:13px}
+  .btn{font:inherit;font-size:12.5px;border:1px solid var(--line);background:#f6f8fb;color:var(--accent);border-radius:8px;padding:5px 10px;cursor:pointer}
+  .btn:hover{background:#eaf0f7}
+
+  /* ---------- filters ---------- */
+  .filters{display:flex;flex-direction:column;gap:10px}
+  .frow{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+  .flab{width:88px;font-size:12px;font-weight:bold;color:var(--ink-2);text-transform:uppercase;letter-spacing:.5px}
+  .pill{font:inherit;font-size:13px;border-radius:999px;padding:5px 12px;cursor:pointer;border:1.5px solid var(--pc);background:#fff;color:var(--ink);display:inline-flex;align-items:center;gap:6px;transition:background .12s}
+  .pill .sw{width:9px;height:9px;border-radius:50%;background:var(--pc)}
+  .pill.on{background:var(--pc);color:#fff}
+  .pill.on .sw{background:#fff}
+  .pill.dark-text.on{color:var(--ink)}
+  .pill.dark-text.on .sw{background:var(--ink)}
+  .flink{font:inherit;font-size:12px;background:none;border:none;color:var(--accent);cursor:pointer;text-decoration:underline;padding:0 4px}
+
+  /* ---------- overview stacked bars ---------- */
+  .ov{display:grid;grid-template-columns:150px 1fr 170px;gap:10px 14px;align-items:center}
+  .ov .nm{font-weight:bold}
+  .ov .nm small{display:block;font-weight:normal;color:var(--muted);font-size:12px}
+  .stack{display:flex;gap:2px;height:22px}
+  .stack span{height:100%;display:block;min-width:0}
+  .stack span:first-child{border-radius:4px 0 0 4px}
+  .stack span:last-child{border-radius:0 4px 4px 0}
+  .stack span:only-child{border-radius:4px}
+  .ov .ct{color:var(--ink-2);font-size:13px}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--ink-2)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+
+  /* ---------- year cards / milestone table ---------- */
+  .yh{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .ypill{background:var(--accent);color:#fff;border-radius:999px;padding:4px 12px;font-weight:bold;font-size:13px}
+  .ymini{display:flex;gap:10px;font-size:12.5px;color:var(--ink-2);flex-wrap:wrap}
+  .ymini span{display:inline-flex;align-items:center;gap:5px}
+  .cathead{display:flex;align-items:center;gap:10px;margin:16px 0 6px}
+  .cathead:first-of-type{margin-top:4px}
+  .cpill{border-radius:999px;padding:3px 11px;font-size:12px;font-weight:bold;color:var(--cc);background:var(--cbg);border:1px solid var(--cc)}
+  .cathead .ln{flex:1;height:1px;background:var(--line)}
+  .cathead .n{font-size:12px;color:var(--muted)}
+
+  .mt{width:100%}
+  .mt-h,.mrow{display:grid;grid-template-columns:minmax(0,2.3fr) 210px minmax(0,1.15fr) minmax(0,1.15fr);gap:14px;align-items:center}
+  .mt-h{font-size:11.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);padding:6px 10px;border-bottom:1px solid var(--line)}
+  .mrow{padding:10px 10px;border-bottom:1px solid var(--line-2);cursor:pointer;border-radius:8px}
+  .mrow:hover{background:#f6f9fc}
+  .mrow:focus-visible{outline:2px solid var(--accent-2);outline-offset:1px}
+  .mname{font-weight:bold;color:var(--ink)}
+  .mname .chev{display:inline-block;color:var(--muted);font-weight:normal;margin-right:4px;transition:transform .15s}
+  .mrow.open .mname .chev{transform:rotate(90deg)}
+  .mwho{font-size:12px;color:var(--muted);margin-top:2px}
+  .prog{display:flex;align-items:center;gap:10px}
+  .blocks{display:flex;gap:4px}
+  .blk{width:22px;height:22px;border-radius:5px;border:1.5px solid var(--line);background:#fff}
+  .blk.f0{background:var(--st-ns);border-color:var(--st-ns)}
+  .blk.f1{background:var(--st-ip);border-color:var(--st-ip)}
+  .blk.f2{background:var(--st-c);border-color:var(--st-c)}
+  .slab{font-size:12.5px;font-weight:bold;padding:2px 8px;border-radius:999px;white-space:nowrap}
+  .slab.s0{background:var(--st-ns-bg);color:#55606c}
+  .slab.s1{background:var(--st-ip-bg);color:#7a5a00}
+  .slab.s2{background:var(--st-c-bg);color:#1d6b3d}
+  .dates{font-size:13px;color:var(--ink)}
+  .dates .dl{display:none;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  .dates .none{color:var(--muted)}
+  .dates .dur{display:block;font-size:11.5px;color:var(--muted)}
+  .flag{display:inline-block;margin-top:4px;font-size:11px;font-weight:bold;color:var(--late);background:var(--late-bg);border-radius:6px;padding:1px 6px}
+  .detail{display:none;margin:0 10px 10px 30px;padding:10px 14px;background:#f6f9fc;border-left:3px solid var(--accent-2);border-radius:0 8px 8px 0;font-size:13px;color:var(--ink-2)}
+  .detail.show{display:block}
+  .detail b{color:var(--ink)}
+  .empty{color:var(--muted);font-style:italic;padding:8px 10px}
+
+  /* ---------- tables (View as table) ---------- */
+  .tbl-wrap{overflow-x:auto;margin-top:12px;display:none}
+  .tbl-wrap.show{display:block}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#f3f6fa;color:var(--ink-2);font-size:12px;text-transform:uppercase;letter-spacing:.4px}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+
+  /* ---------- notes ---------- */
+  .notes ul{margin:6px 0 0;padding-left:20px;color:var(--ink-2)}
+  .notes li{margin:3px 0}
+
+  /* ---------- tooltip ---------- */
+  #tip{position:fixed;pointer-events:none;z-index:50;background:#1b2a3a;color:#fff;font-size:12.5px;padding:8px 10px;border-radius:8px;max-width:280px;box-shadow:0 4px 16px rgba(0,0,0,.2);opacity:0;transition:opacity .08s}
+  #tip.show{opacity:1}
+  #tip b{display:block;margin-bottom:2px}
+
+  footer{color:var(--muted);font-size:12px;text-align:center;margin-top:24px}
+  .err{background:#fff4f2;border:1px solid #f1c5bf;color:#8a2a1f;border-radius:var(--radius);padding:16px 18px}
+
+  @media (max-width:980px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .kpi.hero{grid-column:1/-1}
+  }
+  @media (max-width:760px){
+    h1{font-size:21px}
+    .stamp{text-align:left}
+    .ov{grid-template-columns:1fr}
+    .ov .ct{margin-top:-6px;margin-bottom:6px}
+    .mt-h{display:none}
+    .mrow{grid-template-columns:1fr 1fr;gap:8px 14px}
+    .mrow > .mn{grid-column:1/-1}
+    .mrow > .prog{grid-column:1/-1}
+    .dates .dl{display:block}
+    .flab{width:100%}
+    .detail{margin-left:10px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><img src="assets/dashboard-graphic.png" alt="TSET, The Samuel Roberts Noble Foundation, OMRF, and a rendering of the new facility"></div>
+    <div class="titlebar">
+      <div>
+        <h1 id="title">TSET-AHIF Project Plan Progress Dashboard</h1>
+        <p class="sub">Progress on each project-plan milestone, organized by project year and category.</p>
+      </div>
+      <div class="stamp" id="stamp"></div>
+    </div>
+  </header>
+
+  <main id="app"><div class="card">Loading dashboard data…</div></main>
+
+  <footer>TSET-AHIF Project Plan Progress Dashboard · v1.1</footer>
+</div>
+<div id="tip" role="tooltip"></div>
+
+<script>
+(function(){
+  const STATUS = ["Not Started","In Progress","Complete"];
+  const SCOL = {"Not Started":"var(--st-ns)","In Progress":"var(--st-ip)","Complete":"var(--st-c)"};
+  const SHEX = {"Not Started":"#a3adb8","In Progress":"#f2b705","Complete":"#2e9e5b"};
+  const CAT = {
+    "Construction":{c:"var(--cat-con)",bg:"var(--cat-con-bg)",hex:"#c0632b"},
+    "Administrative":{c:"var(--cat-adm)",bg:"var(--cat-adm-bg)",hex:"#5a55a6"}
+  };
+  const YEAR_RAMP = ["#163a5f","#1f5b91","#3a7fc0","#6aa3d8","#98c1e6"]; // dark -> light blues
+  const TODAY = new Date(); TODAY.setHours(0,0,0,0);
+
+  const app = document.getElementById("app");
+  const tip = document.getElementById("tip");
+  let D = null;
+  const state = {years:new Set(), cats:new Set(), stats:new Set()};
+
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const pd = iso => { if(!iso) return null; const [y,m,d] = iso.split("-").map(Number); return new Date(y,m-1,d); };
+  const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const fd = iso => { const d = pd(iso); return d ? `${MON[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}` : ""; };
+  const fdShort = iso => { const d = pd(iso); return d ? `${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}` : ""; };
+  const days = (a,b) => Math.round((pd(b)-pd(a))/864e5);
+  const sIdx = s => STATUS.indexOf(s);
+
+  function isLate(m){
+    if(m.status === "Complete") return false;
+    const e = pd(m.target_end);
+    return !!e && e < TODAY;
+  }
+
+  function dateCell(label, s, e, sText, eText, extra){
+    const S = s ? fd(s) : (sText ? esc(sText) : "");
+    const E = e ? fd(e) : (eText ? esc(eText) : "");
+    let body;
+    if(!S && !E) body = `<span class="none">—</span>`;
+    else if(S && E && S === E) body = `${S}`;
+    else body = `${S || '<span class="none">?</span>'} – ${E || '<span class="none">?</span>'}`;
+    let dur = "";
+    if(s && e && s !== e){ const n = days(s,e)+1; dur = `<span class="dur">${n} day${n===1?"":"s"}</span>`; }
+    return `<div class="dates"><span class="dl">${label}</span>${body}${dur}${extra||""}</div>`;
+  }
+
+  function counts(list){
+    const c = {"Not Started":0,"In Progress":0,"Complete":0};
+    list.forEach(m => c[m.status]++); return c;
+  }
+
+  function yearLabel(y){ return y.calendar ? `${y.label} · ${y.calendar}` : y.label; }
+
+  function filtered(){
+    return D.milestones.filter(m =>
+      state.years.has(String(m.year)) && state.cats.has(m.category) && state.stats.has(m.status));
+  }
+
+  /* ---------------- render ---------------- */
+  function render(){
+    const list = filtered();
+    const c = counts(list);
+    const total = list.length;
+    const late = list.filter(isLate).length;
+    const pct = total ? Math.round(c.Complete/total*100) : 0;
+
+    let h = "";
+
+    // KPIs
+    h += `<section class="kpis">
+      <div class="kpi hero">
+        <div class="lab">Milestones complete</div>
+        <div class="val">${c.Complete} <span style="font-size:18px;font-weight:normal">of ${total}</span></div>
+        <div class="note">${pct}% of the milestones in view are complete</div>
+        <div class="hero-bar">${STATUS.map(s => c[s] ? `<span style="flex:${c[s]};background:${s==="Not Started"?"rgba(255,255,255,.35)":SHEX[s]}"></span>` : "").join("")}</div>
+      </div>
+      <div class="kpi"><div class="lab"><span class="dot" style="background:var(--st-c)"></span>Complete</div><div class="val">${c.Complete}</div><div class="note">milestones finished</div></div>
+      <div class="kpi"><div class="lab"><span class="dot" style="background:var(--st-ip)"></span>In progress</div><div class="val">${c["In Progress"]}</div><div class="note">underway now</div></div>
+      <div class="kpi"><div class="lab"><span class="dot" style="background:var(--st-ns)"></span>Not started</div><div class="val">${c["Not Started"]}</div><div class="note">yet to begin</div></div>
+      <div class="kpi"><div class="lab"><span class="dot" style="background:var(--late)"></span>Past target end</div><div class="val">${late}</div><div class="note">not complete by target end date</div></div>
+    </section>`;
+
+    // Filters
+    h += `<section class="card"><div class="card-h"><div><h2>Filters</h2><p class="desc">Click a pill to show or hide it. Every card below updates.</p></div><button class="btn" data-act="reset">Show all</button></div>
+      <div class="filters">
+        <div class="frow"><span class="flab">Year</span>${D.years.map((y,i) => pill("years", String(y.num), yearLabel(y), YEAR_RAMP[Math.min(i,YEAR_RAMP.length-1)], i>=3)).join("")}</div>
+        <div class="frow"><span class="flab">Category</span>${D.categories.map(k => pill("cats", k, k, CAT[k]?CAT[k].hex:"#667")).join("")}</div>
+        <div class="frow"><span class="flab">Status</span>${STATUS.map(s => pill("stats", s, s, SHEX[s], s==="In Progress")).join("")}</div>
+      </div></section>`;
+
+    // Overview
+    const rows = D.years.filter(y => state.years.has(String(y.num))).map(y => {
+      const L = list.filter(m => String(m.year) === String(y.num));
+      return {name: y.label, sub: y.calendar ? String(y.calendar) : "", list: L};
+    });
+    rows.push({name:"All years", sub:"combined", list, all:true});
+    h += `<section class="card"><div class="card-h"><div><h2>Progress by project year</h2><p class="desc">Each bar shows the share of that year's milestones in each status. Hover a segment for details.</p></div>
+      <div class="legend">${STATUS.map(s => `<span><span class="dot" style="background:${SCOL[s]}"></span>${s}</span>`).join("")}</div></div>
+      <div class="ov">${rows.map(r => {
+        const cc = counts(r.list), n = r.list.length;
+        const bar = n ? STATUS.map(s => cc[s] ? `<span data-tip="${esc(`<b>${r.name} · ${s}</b>${cc[s]} of ${n} milestones (${Math.round(cc[s]/n*100)}%)`)}" style="flex:${cc[s]};background:${SCOL[s]}"></span>` : "").join("") : "";
+        const w = 100;
+        return `<div class="nm">${r.name}<small>${r.sub}</small></div>
+          <div><div class="stack" style="width:${w}%">${bar || '<span style="flex:1;background:var(--line-2)"></span>'}</div></div>
+          <div class="ct"><b>${cc.Complete}</b> of ${n} complete${n?` (${Math.round(cc.Complete/n*100)}%)`:""}</div>`;
+      }).join("")}</div>
+      <div style="margin-top:12px"><button class="btn" data-act="tbl" data-t="ovt">View as table</button></div>
+      <div class="tbl-wrap" id="ovt"><table><thead><tr><th>Year</th>${STATUS.map(s=>`<th>${s}</th>`).join("")}<th>Total</th><th>% complete</th></tr></thead><tbody>
+        ${rows.map(r => { const cc = counts(r.list), n = r.list.length; return `<tr><td>${r.name}${r.sub?` (${r.sub})`:""}</td>${STATUS.map(s=>`<td class="num">${cc[s]}</td>`).join("")}<td class="num">${n}</td><td class="num">${n?Math.round(cc.Complete/n*100):0}%</td></tr>`; }).join("")}
+      </tbody></table></div></section>`;
+
+    // Year cards
+    D.years.forEach((y, yi) => {
+      if(!state.years.has(String(y.num))) return;
+      const L = list.filter(m => String(m.year) === String(y.num));
+      const cc = counts(L);
+      const tid = `yt${yi}`;
+      h += `<section class="card"><div class="card-h"><div class="yh"><span class="ypill" style="background:${YEAR_RAMP[Math.min(yi,YEAR_RAMP.length-1)]}">${esc(yearLabel(y))}</span><h2>Project milestones</h2></div>
+        <div class="ymini">${STATUS.map(s => `<span><span class="dot" style="background:${SCOL[s]}"></span>${cc[s]} ${s.toLowerCase()}</span>`).join("")}</div></div>`;
+      if(!L.length){ h += `<div class="empty">No milestones match the current filters.</div></section>`; return; }
+      h += `<div class="mt"><div class="mt-h"><div>Milestone</div><div>Progress</div><div>Target dates</div><div>Actual dates</div></div>`;
+      D.categories.concat([...new Set(L.map(m=>m.category))].filter(k=>!D.categories.includes(k))).forEach(k => {
+        const K = L.filter(m => m.category === k).sort((a,b) => (a.target_start||"9999").localeCompare(b.target_start||"9999") || a.row-b.row);
+        if(!K.length) return;
+        const cs = CAT[k] || {c:"#667",bg:"#eef"};
+        const kc = counts(K);
+        h += `<div class="cathead"><span class="cpill" style="--cc:${cs.c};--cbg:${cs.bg}">${esc(k)}</span><span class="n">${kc.Complete} of ${K.length} complete</span><span class="ln"></span></div>`;
+        K.forEach(m => h += milestoneRow(m));
+      });
+      h += `</div>
+        <div style="margin-top:12px"><button class="btn" data-act="tbl" data-t="${tid}">View as table</button></div>
+        <div class="tbl-wrap" id="${tid}"><table><thead><tr><th>Category</th><th>Milestone</th><th>Assigned to</th><th>Target start</th><th>Target end</th><th>Actual start</th><th>Actual end</th><th>Status</th></tr></thead><tbody>
+        ${L.slice().sort((a,b)=>a.category.localeCompare(b.category)||(a.target_start||"").localeCompare(b.target_start||"")).map(m => `<tr><td>${esc(m.category)}</td><td>${esc(m.milestone)}</td><td>${esc(m.assigned_to)}</td>
+          <td>${m.target_start?fdShort(m.target_start):esc(m.target_start_text||"")}</td><td>${m.target_end?fdShort(m.target_end):esc(m.target_end_text||"")}</td>
+          <td>${m.actual_start?fdShort(m.actual_start):esc(m.actual_start_text||"")}</td><td>${m.actual_end?fdShort(m.actual_end):esc(m.actual_end_text||"")}</td><td>${m.status}</td></tr>`).join("")}
+        </tbody></table></div></section>`;
+    });
+
+    // Data-quality notes
+    const notes = [
+      `"Past target end" counts milestones that aren't marked Complete and whose target end date is before today's date (${fd(TODAY.toISOString().slice(0,10))}).`,
+      `Progress blocks fill left to right: one grey block = Not Started, grey + yellow = In Progress, all three (grey, yellow, green) = Complete.`,
+      `Click any milestone row to see who it's assigned to and its notes.`
+    ].concat(D.issues || []);
+    h += `<section class="card notes"><h2>Data quality notes</h2><ul>${notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul></section>`;
+
+    app.innerHTML = h;
+  }
+
+  function pill(group, val, label, color, darkText){
+    const on = state[group].has(val);
+    return `<button class="pill${on?" on":""}${darkText?" dark-text":""}" style="--pc:${color}" data-g="${group}" data-v="${esc(val)}" aria-pressed="${on}"><span class="sw"></span>${esc(label)}</button>`;
+  }
+
+  function milestoneRow(m){
+    const si = sIdx(m.status);
+    const blocks = [0,1,2].map(i => `<span class="blk${i<=si?` f${i}`:""}"></span>`).join("");
+    const lateFlag = isLate(m) ? `<span class="flag">Past target end</span>` : "";
+    const tipTxt = `<b>${m.status}</b>${esc(m.milestone)}`;
+    const det = `<div class="detail" id="d-${m.id}"><div><b>Assigned to:</b> ${esc(m.assigned_to || "—")}</div>${m.notes ? `<div style="margin-top:6px"><b>Notes:</b> ${esc(m.notes)}</div>` : `<div style="margin-top:6px"><b>Notes:</b> <span style="color:var(--muted)">None</span></div>`}</div>`;
+    return `<div class="mrow" tabindex="0" role="button" aria-expanded="false" data-id="${m.id}">
+        <div class="mn"><div class="mname"><span class="chev">›</span>${esc(m.milestone)}</div><div class="mwho">${esc(m.assigned_to)}</div></div>
+        <div class="prog"><div class="blocks" data-tip="${esc(tipTxt)}">${blocks}</div><span class="slab s${si}">${m.status}</span></div>
+        ${dateCell("Target", m.target_start, m.target_end, m.target_start_text, m.target_end_text, lateFlag)}
+        ${dateCell("Actual", m.actual_start, m.actual_end, m.actual_start_text, m.actual_end_text)}
+      </div>${det}`;
+  }
+
+  /* ---------------- events ---------------- */
+  app.addEventListener("click", e => {
+    const p = e.target.closest(".pill");
+    if(p){
+      const set = state[p.dataset.g], v = p.dataset.v;
+      if(set.has(v)){ if(set.size > 1) set.delete(v); } else set.add(v);
+      render(); return;
+    }
+    const b = e.target.closest("[data-act]");
+    if(b){
+      if(b.dataset.act === "reset"){ initState(); render(); }
+      if(b.dataset.act === "tbl"){ const t = document.getElementById(b.dataset.t); t.classList.toggle("show"); b.textContent = t.classList.contains("show") ? "Hide table" : "View as table"; }
+      return;
+    }
+    const r = e.target.closest(".mrow");
+    if(r) toggleRow(r);
+  });
+  app.addEventListener("keydown", e => {
+    const r = e.target.closest && e.target.closest(".mrow");
+    if(r && (e.key === "Enter" || e.key === " ")){ e.preventDefault(); toggleRow(r); }
+  });
+  function toggleRow(r){
+    const d = document.getElementById("d-" + r.dataset.id);
+    const open = !d.classList.contains("show");
+    d.classList.toggle("show", open); r.classList.toggle("open", open); r.setAttribute("aria-expanded", open);
+  }
+  app.addEventListener("mousemove", e => {
+    const t = e.target.closest("[data-tip]");
+    if(!t){ tip.classList.remove("show"); return; }
+    tip.innerHTML = t.dataset.tip;
+    const x = Math.min(e.clientX + 14, window.innerWidth - tip.offsetWidth - 8);
+    const y = e.clientY + 16 + tip.offsetHeight > window.innerHeight ? e.clientY - tip.offsetHeight - 10 : e.clientY + 16;
+    tip.style.left = x + "px"; tip.style.top = y + "px"; tip.classList.add("show");
+  });
+  app.addEventListener("mouseleave", () => tip.classList.remove("show"));
+
+  function initState(){
+    state.years = new Set(D.years.map(y => String(y.num)));
+    state.cats = new Set(D.categories.concat(D.milestones.map(m => m.category)));
+    state.stats = new Set(STATUS);
+  }
+
+  /* ---------------- load ---------------- */
+  fetch("data/dashboard.json", {cache:"no-store"})
+    .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .then(d => {
+      D = d;
+      if(d.title) document.getElementById("title").textContent = d.title;
+      const g = d.generated_at ? new Date(d.generated_at) : null;
+      document.getElementById("stamp").innerHTML = g ? `Data last updated<br><b>${MON[g.getMonth()]} ${g.getDate()}, ${g.getFullYear()}</b>` : "";
+      initState(); render();
+    })
+    .catch(err => {
+      app.innerHTML = `<div class="err"><b>Couldn't load data/dashboard.json.</b><br>${esc(err.message)}<br><br>
+        If you opened index.html by double-clicking it, your browser blocks loading the data file. View it through GitHub Pages,
+        or run <code>python -m http.server</code> in this folder and open <code>http://localhost:8000</code>.</div>`;
+    });
+})();
+</script>
+</body>
+</html>
