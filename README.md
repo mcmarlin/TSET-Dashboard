@@ -1,4 +1,4 @@
-# TSET-AHIF Project Plan Progress Dashboard — v1.1
+# TSET-AHIF Project Plan Progress Dashboard — v1.2
 
 A public, always-on web dashboard that tracks each project-plan milestone
 from **Not Started** (grey) → **In Progress** (yellow) → **Complete** (green),
@@ -62,20 +62,29 @@ Notes on how the columns are read:
 1. **Edit and save the spreadsheet in Excel.**
    It lives in `TSET_Project-Plan_Dashboard\Data\`.
 
-2. **Run the build script** from the dashboard folder
-   (e.g. `TSET_progress_dashboard_Live`). Open a Command Prompt in that folder
-   (in File Explorer, click the address bar, type `cmd`, press Enter) and run:
+2. **Run the build script.** Open a Command Prompt (press the Windows key,
+   type `cmd`, press Enter). First move into the live dashboard folder —
+   **the script won't run correctly without this step**:
+
+   ```
+   cd C:\Users\marlinc\Desktop\TSET_Project-Plan_Dashboard\TSET_progress_dashboard_Live
+   ```
+
+   Then run:
 
    ```
    python build_data.py
    ```
 
-   The script automatically finds the workbook in `..\Data\` (the shared Data
-   folder next to this one). To point it somewhere else:
+   The script automatically finds the workbook in
+   `TSET_Project-Plan_Dashboard\Data\`. To point it at a different file:
 
    ```
    python build_data.py "C:\path\to\TSET_Project_Plan_Tracking_Data.xlsx"
    ```
+
+   (If you ever move or rename the dashboard folder, change the `cd` path to
+   match. If the folder is on a different drive, use `cd /d` instead of `cd`.)
 
    It prints a summary (milestone counts by status) and any data-quality notes.
 
@@ -84,9 +93,11 @@ Notes on how the columns are read:
 
 Uploading only the spreadsheet does nothing — the site only reads `dashboard.json`.
 
-**First-time setup only:** install the one package the script needs:
+**First-time setup only:** install the one package the script needs
+(from the same folder):
 
 ```
+cd C:\Users\marlinc\Desktop\TSET_Project-Plan_Dashboard\TSET_progress_dashboard_Live
 pip install -r requirements.txt
 ```
 
@@ -95,9 +106,11 @@ pip install -r requirements.txt
 ## Previewing on your own computer
 
 Double-clicking `index.html` shows a "Couldn't load data" message, because
-browsers block pages opened from disk from reading other files. To preview:
+browsers block pages opened from disk from reading other files. To preview,
+open a Command Prompt and run:
 
 ```
+cd C:\Users\marlinc\Desktop\TSET_Project-Plan_Dashboard\TSET_progress_dashboard_Live
 python -m http.server
 ```
 
