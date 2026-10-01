@@ -1,8 +1,8 @@
 {
   "title": "TSET-AHIF Project Plan Progress Dashboard",
-  "generated_at": "2026-09-30T15:29",
+  "generated_at": "2026-10-01T13:55",
   "source_file": "TSET_Project_Plan_Tracking_Data.xlsx",
-  "source_modified": "2026-09-30T15:04",
+  "source_modified": "2026-10-01T13:54",
   "statuses": [
     "Not Started",
     "In Progress",
@@ -32,15 +32,15 @@
   "summary": {
     "total": 38,
     "by_status": {
-      "Not Started": 35,
-      "In Progress": 1,
-      "Complete": 2
+      "Not Started": 29,
+      "In Progress": 4,
+      "Complete": 5
     },
     "by_year": {
       "1": {
-        "Not Started": 14,
-        "In Progress": 1,
-        "Complete": 2
+        "Not Started": 8,
+        "In Progress": 4,
+        "Complete": 5
       },
       "2": {
         "Not Started": 17,
@@ -60,9 +60,9 @@
         "Complete": 2
       },
       "Administrative": {
-        "Not Started": 16,
-        "In Progress": 0,
-        "Complete": 0
+        "Not Started": 10,
+        "In Progress": 3,
+        "Complete": 3
       }
     }
   },
@@ -242,9 +242,9 @@
       "assigned_to": "TIHO Leadership Faculty",
       "target_start": "2026-01-01",
       "target_end": "2026-03-31",
-      "actual_start": null,
-      "actual_end": null,
-      "status": "Not Started",
+      "actual_start": "2026-01-01",
+      "actual_end": "2026-06-30",
+      "status": "Complete",
       "notes": ""
     },
     {
@@ -257,9 +257,9 @@
       "assigned_to": "TIHO Leadership Faculty",
       "target_start": "2026-04-01",
       "target_end": "2026-06-30",
-      "actual_start": null,
-      "actual_end": null,
-      "status": "Not Started",
+      "actual_start": "2026-04-01",
+      "actual_end": "2026-06-30",
+      "status": "Complete",
       "notes": "Supported by TSET funding for staffing including TIHO project manager, TSET Biorepository Hub Manager/Technician, CRI Hub Database Manager, CRI Hub Data Librarian/Data Analyst, and HPH: Project Manager. Funds will also be used to purchase an annual subscription for the NIH Toolbox that will be used to administer various standardized cognitive tests as well as computing storage and infrastructure."
     },
     {
@@ -272,9 +272,9 @@
       "assigned_to": "TIHO Leadership Faculty",
       "target_start": "2026-06-01",
       "target_end": "2026-09-30",
-      "actual_start": null,
-      "actual_end": null,
-      "status": "Not Started",
+      "actual_start": "2026-06-01",
+      "actual_end": "2026-09-30",
+      "status": "Complete",
       "notes": "TSET funding support for TDT Coordinator"
     },
     {
@@ -287,9 +287,9 @@
       "assigned_to": "TSET Hubs staff",
       "target_start": "2026-10-01",
       "target_end": "2026-12-31",
-      "actual_start": null,
+      "actual_start": "2026-10-01",
       "actual_end": null,
-      "status": "Not Started",
+      "status": "In Progress",
       "notes": "Supported by TSET funding Telehealth consultant costs to develop and implement tools for distant monitoring, such as thermograms, cardiac monitoring, etc. The OCTSI/OSCTR has built an Evaluation Core which provides external Evaluation for OCTSI/OSCTR Programs and has also done multiple evaluation programs for tribal facilities, the Tribal Epidemiology Unit, and other organizations. Dr. Janis Campbell is an Associate Professor at the adjacent OUHSC and she and her unit will be hired to perform evaluation services for the TIHO. The approximate $6.4M requested will finish out the 2nd and 3rd floors of the Advanced Human Imaging Center for which over $7.45M is already raised as matching funds. These renovations include all architectural and design services, site prep, contractor activitities, plumbing, electrical, technology, furniture, fixtures and equipment. Detailed bids and cost estimates are available as needed."
     },
     {
@@ -302,9 +302,9 @@
       "assigned_to": "TSET Biorepository staff",
       "target_start": "2026-01-01",
       "target_end": "2026-12-31",
-      "actual_start": null,
+      "actual_start": "2026-01-01",
       "actual_end": null,
-      "status": "Not Started",
+      "status": "In Progress",
       "notes": ""
     },
     {
@@ -317,9 +317,9 @@
       "assigned_to": "TSET Human Performance Hub staff",
       "target_start": "2026-07-01",
       "target_end": "2026-12-31",
-      "actual_start": null,
+      "actual_start": "2026-10-01",
       "actual_end": null,
-      "status": "Not Started",
+      "status": "In Progress",
       "notes": ""
     },
     {
