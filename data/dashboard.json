@@ -1,8 +1,8 @@
 {
   "title": "TSET-AHIF Project Plan Progress Dashboard",
-  "generated_at": "2026-10-02T11:12",
+  "generated_at": "2026-10-02T12:22",
   "source_file": "TSET_Project_Plan_Tracking_Data.xlsx",
-  "source_modified": "2026-10-02T11:11",
+  "source_modified": "2026-10-02T12:21",
   "statuses": [
     "Not Started",
     "In Progress",
@@ -38,12 +38,12 @@
     },
     "by_year": {
       "1": {
-        "Not Started": 2,
+        "Not Started": 1,
         "In Progress": 4,
         "Complete": 5
       },
       "2": {
-        "Not Started": 23,
+        "Not Started": 24,
         "In Progress": 0,
         "Complete": 0
       },
@@ -55,12 +55,12 @@
     },
     "by_category": {
       "Construction": {
-        "Not Started": 17,
+        "Not Started": 19,
         "In Progress": 1,
         "Complete": 2
       },
       "Administrative": {
-        "Not Started": 12,
+        "Not Started": 10,
         "In Progress": 3,
         "Complete": 3
       }
@@ -132,21 +132,6 @@
       "row": 6,
       "year": 1,
       "year_raw": "2026 - Year 1",
-      "category": "Construction",
-      "milestone": "TIHO Human Performance Hub - renovations",
-      "assigned_to": "Contractors",
-      "target_start": "2026-09-01",
-      "target_end": "2027-09-30",
-      "actual_start": null,
-      "actual_end": null,
-      "status": "Not Started",
-      "notes": "Supported by TSET funding for renovation of Ground Floor in the OMRF Tower"
-    },
-    {
-      "id": "m7",
-      "row": 7,
-      "year": 1,
-      "year_raw": "2026 - Year 1",
       "category": "Administrative",
       "milestone": "TIHO - assemble internal and external advisory committees",
       "assigned_to": "TIHO Leadership Faculty",
@@ -158,8 +143,8 @@
       "notes": ""
     },
     {
-      "id": "m8",
-      "row": 8,
+      "id": "m7",
+      "row": 7,
       "year": 1,
       "year_raw": "2026 - Year 1",
       "category": "Administrative",
@@ -173,8 +158,8 @@
       "notes": "Supported by TSET funding for staffing including TIHO project manager, TSET Biorepository Hub Manager/Technician, CRI Hub Database Manager, CRI Hub Data Librarian/Data Analyst, and HPH: Project Manager. Funds will also be used to purchase an annual subscription for the NIH Toolbox that will be used to administer various standardized cognitive tests as well as computing storage and infrastructure."
     },
     {
-      "id": "m9",
-      "row": 9,
+      "id": "m8",
+      "row": 8,
       "year": 1,
       "year_raw": "2026 - Year 1",
       "category": "Administrative",
@@ -188,8 +173,8 @@
       "notes": "TSET funding support for TDT Coordinator"
     },
     {
-      "id": "m10",
-      "row": 10,
+      "id": "m9",
+      "row": 9,
       "year": 1,
       "year_raw": "2026 - Year 1",
       "category": "Administrative",
@@ -203,8 +188,8 @@
       "notes": "Supported by TSET funding Telehealth consultant costs to develop and implement tools for distant monitoring, such as thermograms, cardiac monitoring, etc. The OCTSI/OSCTR has built an Evaluation Core which provides external Evaluation for OCTSI/OSCTR Programs and has also done multiple evaluation programs for tribal facilities, the Tribal Epidemiology Unit, and other organizations. Dr. Janis Campbell is an Associate Professor at the adjacent OUHSC and she and her unit will be hired to perform evaluation services for the TIHO. The approximate $6.4M requested will finish out the 2nd and 3rd floors of the Advanced Human Imaging Center for which over $7.45M is already raised as matching funds. These renovations include all architectural and design services, site prep, contractor activitities, plumbing, electrical, technology, furniture, fixtures and equipment. Detailed bids and cost estimates are available as needed."
     },
     {
-      "id": "m11",
-      "row": 11,
+      "id": "m10",
+      "row": 10,
       "year": 1,
       "year_raw": "2026 - Year 1",
       "category": "Administrative",
@@ -218,8 +203,8 @@
       "notes": ""
     },
     {
-      "id": "m12",
-      "row": 12,
+      "id": "m11",
+      "row": 11,
       "year": 1,
       "year_raw": "2026 - Year 1",
       "category": "Administrative",
@@ -233,8 +218,8 @@
       "notes": ""
     },
     {
-      "id": "m13",
-      "row": 13,
+      "id": "m12",
+      "row": 12,
       "year": 2,
       "year_raw": "2027 - Year 2",
       "category": "Construction",
@@ -248,8 +233,8 @@
       "notes": "Supported by TSET funding for construction"
     },
     {
-      "id": "m14",
-      "row": 14,
+      "id": "m13",
+      "row": 13,
       "year": 2,
       "year_raw": "2027 - Year 2",
       "category": "Construction",
@@ -263,8 +248,8 @@
       "notes": "Supported by TSET funding for construction"
     },
     {
-      "id": "m15",
-      "row": 15,
+      "id": "m14",
+      "row": 14,
       "year": 2,
       "year_raw": "2027 - Year 2",
       "category": "Construction",
@@ -278,8 +263,8 @@
       "notes": "Supported by TSET funding for construction"
     },
     {
-      "id": "m16",
-      "row": 16,
+      "id": "m15",
+      "row": 15,
       "year": 2,
       "year_raw": "2027 - Year 2",
       "category": "Construction",
@@ -293,8 +278,8 @@
       "notes": "Supported by TSET funding for construction"
     },
     {
-      "id": "m17",
-      "row": 17,
+      "id": "m16",
+      "row": 16,
       "year": 2,
       "year_raw": "2027 - Year 2",
       "category": "Construction",
@@ -308,8 +293,8 @@
       "notes": "Supported by TSET funding for construction"
     },
     {
-      "id": "m18",
-      "row": 18,
+      "id": "m17",
+      "row": 17,
       "year": 2,
       "year_raw": "2027 - Year 2",
       "category": "Construction",
@@ -323,8 +308,8 @@
       "notes": "Supported by TSET funding for construction"
     },
     {
-      "id": "m19",
-      "row": 19,
+      "id": "m18",
+      "row": 18,
       "year": 2,
       "year_raw": "2027 - Year 2",
       "category": "Construction",
@@ -338,8 +323,8 @@
       "notes": "Supported by TSET funding for construction"
     },
     {
-      "id": "m20",
-      "row": 20,
+      "id": "m19",
+      "row": 19,
       "year": 2,
       "year_raw": "2027 - Year 2",
       "category": "Construction",
@@ -353,8 +338,8 @@
       "notes": "Supported by TSET funding for finishes"
     },
     {
-      "id": "m21",
-      "row": 21,
+      "id": "m20",
+      "row": 20,
       "year": 2,
       "year_raw": "2027 - Year 2",
       "category": "Construction",
@@ -368,15 +353,30 @@
       "notes": "Supported by TSET funding for finishes"
     },
     {
+      "id": "m21",
+      "row": 21,
+      "year": 2,
+      "year_raw": "2027 - Year 2",
+      "category": "Construction",
+      "milestone": "TIHO/AHIF Millwork and Flooring",
+      "assigned_to": "Contractors",
+      "target_start": "2027-07-01",
+      "target_end": "2027-07-21",
+      "actual_start": null,
+      "actual_end": null,
+      "status": "Not Started",
+      "notes": "Supported by TSET funding for finishes"
+    },
+    {
       "id": "m22",
       "row": 22,
       "year": 2,
       "year_raw": "2027 - Year 2",
       "category": "Construction",
-      "milestone": "TIHO/ AHIF Millwork and Flooring",
+      "milestone": "TIHO/AHIF Final Paint and Punchlist",
       "assigned_to": "Contractors",
-      "target_start": "2027-07-01",
-      "target_end": "2027-07-21",
+      "target_start": "2027-07-22",
+      "target_end": "2027-08-11",
       "actual_start": null,
       "actual_end": null,
       "status": "Not Started",
@@ -388,22 +388,7 @@
       "year": 2,
       "year_raw": "2027 - Year 2",
       "category": "Construction",
-      "milestone": "TIHO/ AHIF Final Paint and Punchlist",
-      "assigned_to": "Contractors",
-      "target_start": "2027-07-22",
-      "target_end": "2027-08-11",
-      "actual_start": null,
-      "actual_end": null,
-      "status": "Not Started",
-      "notes": "Supported by TSET funding for finishes"
-    },
-    {
-      "id": "m24",
-      "row": 24,
-      "year": 2,
-      "year_raw": "2027 - Year 2",
-      "category": "Construction",
-      "milestone": "TIHO/ AHIF Sitework and Canopies",
+      "milestone": "TIHO/AHIF Sitework and Canopies",
       "assigned_to": "Contractors",
       "target_start": "2027-04-29",
       "target_end": "2027-06-09",
@@ -413,8 +398,8 @@
       "notes": "Supported by TSET funding for finishes"
     },
     {
-      "id": "m25",
-      "row": 25,
+      "id": "m24",
+      "row": 24,
       "year": 2,
       "year_raw": "2027 - Year 2",
       "category": "Construction",
@@ -428,8 +413,8 @@
       "notes": "TSET funds will be used to support the installation of equipment to the 2nd and 3rd floors, including Computing connection it I2, computing cabelling, high performance computing nodes and storage for CRI/TDT, ECG and Benchtop centrifuge (Eppendorf Centrifuge 5810R) for HPH, and clinical Exam Room Equipment (exam table, patient chairs, physician stool, EMR work station) for the CRI. Funding will also be used to install TSET and Tobacco-Free signage."
     },
     {
-      "id": "m26",
-      "row": 26,
+      "id": "m25",
+      "row": 25,
       "year": 2,
       "year_raw": "2027 - Year 2",
       "category": "Construction",
@@ -443,8 +428,8 @@
       "notes": "Supported by TSET funding"
     },
     {
-      "id": "m27",
-      "row": 27,
+      "id": "m26",
+      "row": 26,
       "year": 2,
       "year_raw": "2027 - Year 2",
       "category": "Construction",
@@ -458,11 +443,11 @@
       "notes": "Supported by TSET funding for final inspections"
     },
     {
-      "id": "m28",
-      "row": 28,
+      "id": "m27",
+      "row": 27,
       "year": 2,
       "year_raw": "2027 - Year 2",
-      "category": "Administrative",
+      "category": "Construction",
       "milestone": "TIHO/AHIF - Certificate of Occupancy",
       "assigned_to": "TIHO Leadership Faculty",
       "target_start": "2027-09-02",
@@ -473,11 +458,11 @@
       "notes": "Supported by TSET funding for certificate of occupancy"
     },
     {
-      "id": "m29",
-      "row": 29,
+      "id": "m28",
+      "row": 28,
       "year": 2,
       "year_raw": "2027 - Year 2",
-      "category": "Administrative",
+      "category": "Construction",
       "milestone": "TIHO/AHIF - Grand Opening Ribbon Cutting Ceremony",
       "assigned_to": "TIHO Leadership Faculty, TSET Hubs Staff, TSET Leadership, OMRF Leadership, Community Leaders",
       "target_start": "2027-09-22",
@@ -486,6 +471,21 @@
       "actual_end": null,
       "status": "Not Started",
       "notes": "Partial TSET funding support for ribbon cutting ceremony"
+    },
+    {
+      "id": "m29",
+      "row": 29,
+      "year": 2,
+      "year_raw": "2027 - Year 2",
+      "category": "Construction",
+      "milestone": "TIHO Human Performance Hub - renovations",
+      "assigned_to": "Contractors",
+      "target_start": "2027-08-01",
+      "target_end": "2028-04-30",
+      "actual_start": null,
+      "actual_end": null,
+      "status": "Not Started",
+      "notes": "Supported by TSET funding for renovation of Ground Floor in the OMRF Tower"
     },
     {
       "id": "m30",
